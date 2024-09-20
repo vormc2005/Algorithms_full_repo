@@ -55,6 +55,25 @@ class Node {
       }
       return false;
     }
+
+    breadthFirstSearch(){
+        let currentNode = this.root;
+        let list = [];
+        let queue = [];
+        queue.push(currentNode);
+        while(queue.length > 0){
+            currentNode = queue.shift();
+            console.log(currentNode.value)
+            list.push(currentNode.value);
+            if(currentNode.left){
+                queue.push(currentNode.left)
+            }
+            if(currentNode.right){
+                queue.push(currentNode.right)
+            }
+        }
+        return list;
+    }
   
     remove(value) {
       if (!this.root) {
@@ -142,10 +161,11 @@ class Node {
   tree.insert(170);
   tree.insert(15);
   tree.insert(1);
-  tree.remove(170);
+//   tree.remove(170);
   JSON.stringify(traverse(tree.root));
-  console.log(tree)
-  console.log(tree.lookup(20));
+//   console.log(tree)
+//   console.log(tree.lookup(20));
+  console.log(tree.breadthFirstSearch())
   //     9
   //  4     20
   //1  6  15  170

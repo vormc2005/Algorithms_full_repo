@@ -40,6 +40,24 @@ class BinarySearchTree{
 
     }
 
+   breathFirstSearch(){
+        let currentNode = this.root;
+        let list = [];
+        let queue = [];
+        queue.push(currentNode);
+        while(queue.length > 0){
+            currentNode = queue.shift();
+            list.push(currentNode.value);
+            if(currentNode.left){
+                queue.push(currentNode.left)
+            }
+            if(currentNode.right){
+                queue.push(currentNode.right);
+            }
+        }
+        return list;
+   }
+
     lookup(value){
         if(this.root){
             return false;
@@ -71,7 +89,9 @@ tree.insert(170);
 tree.insert(15);
 tree.insert(1);
 // console.log(JSON.stringify(tree))
-console.log(JSON.stringify(traverse(tree.root)));
+// console.log(JSON.stringify(traverse(tree.root)));
+
+console.log(tree.breathFirstSearch())
 
 
 function traverse(node) {
